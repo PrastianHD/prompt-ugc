@@ -15,49 +15,49 @@ export default function HeroSection() {
 
       <div className="max-w-4xl mx-auto text-center space-y-8">
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-indigo-500/30">
-          <Sparkles className="w-4 h-4 text-cyan-400" />
-          <span className="text-sm text-cyan-400 font-medium">AI-Powered UGC Generation</span>
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass-card">
+          <Sparkles className="w-4 h-4 text-primary" />
+          <span className="text-sm font-medium">Generasi UGC dengan AI</span>
         </div>
 
         {/* Main heading */}
         <div className="space-y-4">
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight text-pretty">
-            <span className="gradient-text">Create Professional UGC</span>
+          <h1 className="text-5xl md:text-7xl font-display font-bold leading-tight text-pretty">
+            <span className="text-primary">Buat Video UGC</span>
             <br />
-            <span className="text-foreground">in Seconds</span>
+            <span className="text-foreground">dalam Hitungan Detik</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-pretty">
-            Transform your product into compelling user-generated content with AI-powered script generation and scene framing. Perfect for TikTok, Instagram, and YouTube.
+            Ubah produk Anda menjadi konten buatan pengguna yang menarik dengan generasi script berbasis AI dan pembingkaian adegan. Sempurna untuk TikTok, Instagram, dan YouTube.
           </p>
         </div>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
           <Link href="/dashboard">
-            <Button size="lg" className="gap-2 bg-indigo-600 hover:bg-indigo-700 text-white h-12 px-8 text-base">
-              Get Started
+            <Button size="lg" className="gap-2 bg-primary hover:bg-primary/90 h-12 px-8 text-base">
+              Mulai Gratis
               <ArrowRight className="w-4 h-4" />
             </Button>
           </Link>
-          <Button size="lg" variant="outline" className="h-12 px-8 text-base border-white/10 hover:bg-white/5">
-            View Demo
+          <Button size="lg" variant="outline" className="h-12 px-8 text-base">
+            Lihat Demo
           </Button>
         </div>
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-8 pt-12 border-t border-white/5">
+        <div className="grid grid-cols-3 gap-8 pt-12 border-t border-border">
           <div className="space-y-2">
-            <div className="text-2xl md:text-3xl font-bold text-cyan-400">10K+</div>
-            <p className="text-sm text-muted-foreground">Scripts Generated</p>
+            <div className="text-2xl md:text-3xl font-bold text-primary">5K+</div>
+            <p className="text-sm text-muted-foreground">Script Terbuat</p>
           </div>
           <div className="space-y-2">
-            <div className="text-2xl md:text-3xl font-bold text-indigo-400">500+</div>
-            <p className="text-sm text-muted-foreground">Happy Creators</p>
+            <div className="text-2xl md:text-3xl font-bold text-secondary">200+</div>
+            <p className="text-sm text-muted-foreground">Kreator Senang</p>
           </div>
           <div className="space-y-2">
-            <div className="text-2xl md:text-3xl font-bold text-purple-400">99%</div>
-            <p className="text-sm text-muted-foreground">Satisfaction Rate</p>
+            <div className="text-2xl md:text-3xl font-bold text-primary">98%</div>
+            <p className="text-sm text-muted-foreground">Tingkat Puas</p>
           </div>
         </div>
       </div>
