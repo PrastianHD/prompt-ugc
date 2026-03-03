@@ -26,52 +26,52 @@ export default function BentoGrid() {
   return (
     <section className="py-20 px-6 max-w-6xl mx-auto">
       <div className="text-center space-y-4 mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold">Powerful Features</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Everything you need to create professional UGC content</p>
+        <h2 className="text-4xl md:text-5xl font-display font-bold">Fitur Unggulan</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">Semua yang Anda butuhkan untuk membuat konten UGC berkualitas profesional</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-max">
         {/* Featured card (larger) */}
         <BentoCard
-          title="AI Script Generation"
-          description="Generate engaging UGC scripts in seconds. Our AI analyzes your product and creates scripts tailored to your target market."
+          title="Generasi Script AI"
+          description="Hasilkan script UGC yang menarik dalam hitungan detik. AI kami menganalisis produk Anda dan membuat script yang disesuaikan dengan target pasar Anda."
           icon={<Brain className="w-6 h-6" />}
           className="md:col-span-2 lg:col-span-2 md:row-span-2"
           gradient="bg-indigo-500/20"
         />
 
         <BentoCard
-          title="Scene Framing"
-          description="Automatically create scene descriptions and frame suggestions for your videos."
+          title="Pembingkaian Adegan"
+          description="Buat deskripsi adegan dan saran pembingkaian untuk video Anda secara otomatis."
           icon={<Palette className="w-6 h-6" />}
           gradient="bg-cyan-500/20"
         />
 
         <BentoCard
-          title="One-Click Setup"
-          description="Upload your product photo and let AI do the rest. Simple, fast, and intuitive."
+          title="Setup Sekali Klik"
+          description="Unggah foto produk Anda dan biarkan AI melakukan sisanya. Sederhana, cepat, dan intuitif."
           icon={<Zap className="w-6 h-6" />}
           gradient="bg-yellow-500/20"
         />
 
         <BentoCard
-          title="Multiple Formats"
-          description="Export scripts in various formats optimized for TikTok, Instagram, YouTube, and more."
+          title="Format Beragam"
+          description="Ekspor script dalam berbagai format yang dioptimalkan untuk TikTok, Instagram, YouTube, dan lebih banyak lagi."
           icon={<Video className="w-6 h-6" />}
           gradient="bg-pink-500/20"
         />
 
         <BentoCard
-          title="Customizable Prompts"
-          description="Fine-tune every aspect of your scripts with advanced customization options."
+          title="Prompt Dapat Disesuaikan"
+          description="Sesuaikan setiap aspek script Anda dengan opsi kustomisasi lanjutan."
           icon={<Sparkles className="w-6 h-6" />}
           className="md:col-span-2 lg:col-span-2"
           gradient="bg-purple-500/20"
         />
 
         <BentoCard
-          title="Share & Collaborate"
-          description="Share your scripts with team members and get feedback in real-time."
+          title="Bagikan & Kolaborasi"
+          description="Bagikan script Anda dengan anggota tim dan dapatkan umpan balik secara real-time."
           icon={<Share2 className="w-6 h-6" />}
           gradient="bg-green-500/20"
         />
