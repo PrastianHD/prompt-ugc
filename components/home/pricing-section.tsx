@@ -5,50 +5,50 @@ import { Button } from '@/components/ui/button'
 
 const plans = [
   {
-    name: 'Starter',
-    price: 'Free',
-    description: 'Perfect for trying it out',
+    name: 'Pemula',
+    price: 'Gratis',
+    description: 'Sempurna untuk mencoba',
     features: [
-      'Up to 5 scripts/month',
-      'Basic AI model',
-      'Standard frames',
-      'Download in PDF',
-      'Community support',
+      'Hingga 5 script/bulan',
+      'Model AI dasar',
+      'Pembingkaian standar',
+      'Unduh dalam PDF',
+      'Dukungan komunitas',
     ],
-    cta: 'Get Started',
+    cta: 'Mulai Sekarang',
     popular: false,
   },
   {
-    name: 'Creator',
-    price: '$29',
-    period: '/month',
-    description: 'For serious content creators',
+    name: 'Kreator',
+    price: 'Rp 299K',
+    period: '/bulan',
+    description: 'Untuk kreator konten serius',
     features: [
-      'Unlimited scripts',
-      'Advanced AI model',
-      'Custom frames & backgrounds',
-      'Multiple export formats',
-      'Priority email support',
-      'API access',
-      'Team collaboration',
+      'Script unlimited',
+      'Model AI canggih',
+      'Frame & background custom',
+      'Berbagai format ekspor',
+      'Dukungan email prioritas',
+      'Akses API',
+      'Kolaborasi tim',
     ],
-    cta: 'Start Free Trial',
+    cta: 'Coba Gratis 7 Hari',
     popular: true,
   },
   {
     name: 'Studio',
     price: 'Custom',
-    description: 'For production teams',
+    description: 'Untuk tim produksi',
     features: [
-      'Everything in Creator',
-      'Dedicated account manager',
-      'Custom AI training',
-      'White-label solution',
-      '24/7 phone support',
-      'SLA guarantee',
-      'Advanced analytics',
+      'Semua fitur Kreator',
+      'Account manager dedicated',
+      'Pelatihan AI custom',
+      'Solusi white-label',
+      'Dukungan 24/7',
+      'Jaminan SLA',
+      'Analytics lanjutan',
     ],
-    cta: 'Contact Sales',
+    cta: 'Hubungi Sales',
     popular: false,
   },
 ]
@@ -57,8 +57,8 @@ export default function PricingSection() {
   return (
     <section className="py-20 px-6 max-w-6xl mx-auto">
       <div className="text-center space-y-4 mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold">Simple, Transparent Pricing</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Choose the plan that works for you</p>
+        <h2 className="text-4xl md:text-5xl font-display font-bold">Harga Sederhana & Transparan</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">Pilih paket yang sesuai dengan kebutuhan Anda</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -72,8 +72,8 @@ export default function PricingSection() {
             }`}
           >
             {plan.popular && (
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-indigo-600 text-white text-sm font-semibold rounded-full">
-                Most Popular
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-primary text-white text-sm font-semibold rounded-full">
+                Paling Populer
               </div>
             )}
 
@@ -96,7 +96,7 @@ export default function PricingSection() {
               <Button
                 className={`w-full ${
                   plan.popular
-                    ? 'bg-indigo-600 hover:bg-indigo-700 text-white'
+                    ? 'bg-primary hover:bg-primary/90 text-white'
                     : 'bg-white/10 hover:bg-white/20 text-foreground'
                 }`}
               >
@@ -120,9 +120,9 @@ export default function PricingSection() {
       {/* FAQ Notice */}
       <div className="mt-16 text-center">
         <p className="text-muted-foreground">
-          Need something custom?{' '}
-          <a href="#" className="text-indigo-400 hover:text-indigo-300 font-semibold">
-            Contact our sales team
+          Butuh sesuatu yang custom?{' '}
+          <a href="#" className="text-primary hover:text-primary/80 font-semibold">
+            Hubungi tim sales kami
           </a>
         </p>
       </div>

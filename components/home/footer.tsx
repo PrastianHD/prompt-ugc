@@ -13,52 +13,52 @@ export default function Footer() {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-indigo-400" />
-              <span className="text-lg font-bold gradient-text">PromptCraft</span>
+              <Sparkles className="w-6 h-6 text-primary" />
+              <span className="text-lg font-bold">PromptCraft</span>
             </div>
             <p className="text-sm text-muted-foreground">
-              AI-powered UGC generation for creators and brands.
+              Generasi UGC bertenaga AI untuk kreator dan merek.
             </p>
           </div>
 
           {/* Product */}
           <div className="space-y-4">
-            <h4 className="font-semibold">Product</h4>
+            <h4 className="font-semibold">Produk</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="#" className="hover:text-foreground transition-colors">Features</Link></li>
-              <li><Link href="#" className="hover:text-foreground transition-colors">Pricing</Link></li>
-              <li><Link href="#" className="hover:text-foreground transition-colors">Templates</Link></li>
-              <li><Link href="#" className="hover:text-foreground transition-colors">Documentation</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Fitur</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Harga</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Template</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Dokumentasi</Link></li>
             </ul>
           </div>
 
           {/* Company */}
           <div className="space-y-4">
-            <h4 className="font-semibold">Company</h4>
+            <h4 className="font-semibold">Perusahaan</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="#" className="hover:text-foreground transition-colors">About</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Tentang</Link></li>
               <li><Link href="#" className="hover:text-foreground transition-colors">Blog</Link></li>
-              <li><Link href="#" className="hover:text-foreground transition-colors">Careers</Link></li>
-              <li><Link href="#" className="hover:text-foreground transition-colors">Contact</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Karir</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Kontak</Link></li>
             </ul>
           </div>
 
           {/* Legal */}
           <div className="space-y-4">
-            <h4 className="font-semibold">Legal</h4>
+            <h4 className="font-semibold">Hukum</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li><Link href="#" className="hover:text-foreground transition-colors">Privacy</Link></li>
-              <li><Link href="#" className="hover:text-foreground transition-colors">Terms</Link></li>
-              <li><Link href="#" className="hover:text-foreground transition-colors">Security</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Privasi</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Syarat & Ketentuan</Link></li>
+              <li><Link href="#" className="hover:text-foreground transition-colors">Keamanan</Link></li>
               <li><Link href="#" className="hover:text-foreground transition-colors">Cookies</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-muted-foreground">
-            &copy; {currentYear} PromptCraft UGC. All rights reserved.
+            &copy; {currentYear} PromptCraft UGC. Semua hak dilindungi.
           </p>
           <div className="flex gap-6 text-sm text-muted-foreground">
             <Link href="#" className="hover:text-foreground transition-colors">Twitter</Link>

@@ -5,32 +5,32 @@ import { Upload, Settings, Brain, Sparkles, Download } from 'lucide-react'
 const steps = [
   {
     number: 1,
-    title: 'Upload Product Photo',
-    description: 'Share a clear photo of your product. Our AI analyzes it to understand key features.',
+    title: 'Unggah Foto Produk',
+    description: 'Bagikan foto produk yang jelas. AI kami menganalisisnya untuk memahami fitur kunci.',
     icon: <Upload className="w-8 h-8" />,
   },
   {
     number: 2,
-    title: 'Set Parameters',
-    description: 'Choose background style, model preference, video platform, and target audience.',
+    title: 'Atur Parameter',
+    description: 'Pilih gaya latar belakang, preferensi model, platform video, dan target audiens.',
     icon: <Settings className="w-8 h-8" />,
   },
   {
     number: 3,
-    title: 'AI Generation',
-    description: 'Our advanced AI generates personalized UGC scripts and scene frames in seconds.',
+    title: 'Generasi AI',
+    description: 'AI canggih kami menghasilkan script UGC dan pembingkaian adegan yang dipersonalisasi dalam hitungan detik.',
     icon: <Brain className="w-8 h-8" />,
   },
   {
     number: 4,
-    title: 'Customize & Refine',
-    description: 'Edit the scripts, regenerate sections, or adjust the tone and style to match your vision.',
+    title: 'Sesuaikan & Perbaiki',
+    description: 'Edit script, regenerasi bagian, atau sesuaikan nada dan gaya agar sesuai dengan visi Anda.',
     icon: <Sparkles className="w-8 h-8" />,
   },
   {
     number: 5,
-    title: 'Download & Share',
-    description: 'Export your scripts in multiple formats and start creating amazing content.',
+    title: 'Unduh & Bagikan',
+    description: 'Ekspor script Anda dalam berbagai format dan mulai membuat konten yang menakjubkan.',
     icon: <Download className="w-8 h-8" />,
   },
 ]
@@ -39,8 +39,8 @@ export default function HowItWorks() {
   return (
     <section className="py-20 px-6 max-w-6xl mx-auto">
       <div className="text-center space-y-4 mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold">How It Works</h2>
-        <p className="text-muted-foreground max-w-2xl mx-auto">Five simple steps to create professional UGC content</p>
+        <h2 className="text-4xl md:text-5xl font-display font-bold">Cara Kerjanya</h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">Lima langkah sederhana untuk membuat konten UGC profesional</p>
       </div>
 
       <div className="space-y-12">
@@ -59,7 +59,7 @@ export default function HowItWorks() {
             {/* Content */}
             <div className="pt-2 flex-1">
               <div className="flex items-center gap-3 mb-2">
-                <div className="text-indigo-400">{step.icon}</div>
+                <div className="text-primary">{step.icon}</div>
                 <h3 className="text-2xl font-semibold">{step.title}</h3>
               </div>
               <p className="text-muted-foreground">{step.description}</p>
@@ -69,14 +69,14 @@ export default function HowItWorks() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="mt-16 p-8 glass rounded-2xl text-center space-y-4">
-        <h3 className="text-2xl font-semibold">Ready to get started?</h3>
-        <p className="text-muted-foreground">Start generating professional UGC scripts in minutes</p>
+      <div className="mt-16 p-8 glass-card rounded-2xl text-center space-y-4">
+        <h3 className="text-2xl font-semibold">Siap untuk memulai?</h3>
+        <p className="text-muted-foreground">Mulai hasilkan script UGC profesional dalam hitungan menit</p>
         <a
           href="/dashboard"
-          className="inline-block px-8 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-semibold transition-colors"
+          className="inline-block px-8 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition-colors"
         >
-          Launch Dashboard
+          Buka Dashboard
         </a>
       </div>
     </section>
