@@ -89,8 +89,7 @@ const accentMap = {
 
 export default function BentoGrid() {
   return (
-    <section id="features" className="py-28 w-full">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="features" className="py-28 px-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="mb-16">
         <span className="badge badge-violet mb-5 block w-fit">Fitur Unggulan</span>
@@ -138,7 +137,6 @@ export default function BentoGrid() {
             </div>
           )
         })}
-      </div>
       </div>
     </section>
   )

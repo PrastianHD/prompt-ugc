@@ -45,8 +45,7 @@ const numClass = {
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-28 w-full">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="how-it-works" className="py-28 px-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="mb-16">
         <span className="badge badge-cyan mb-5 block w-fit">Cara Kerja</span>
@@ -108,7 +107,6 @@ export default function HowItWorks() {
         <a href="/dashboard/new" className="btn-primary text-base mx-auto inline-flex">
           Buat Konten Pertama Saya
         </a>
-      </div>
       </div>
     </section>
   )

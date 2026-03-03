@@ -38,8 +38,7 @@ const plans = [
 
 export default function PricingSection() {
   return (
-    <section id="pricing" className="py-28 w-full">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="pricing" className="py-28 px-6 max-w-6xl mx-auto">
       {/* Header */}
       <div className="mb-16 text-center">
         <span className="badge badge-violet mb-5 inline-flex">Harga</span>
@@ -121,7 +120,6 @@ export default function PricingSection() {
         Ada pertanyaan?{' '}
         <a href="#" className="text-[var(--accent-bright)] hover:underline font-semibold">Chat dengan tim kami</a>
       </p>
-      </div>
     </section>
   )
 }

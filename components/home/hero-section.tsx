@@ -20,7 +20,7 @@ export default function HeroSection() {
       <div className="absolute inset-0 dot-grid opacity-30 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 sm:px-8 pt-28 pb-24 text-center">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-28 pb-24 text-center">
 
         {/* Badge */}
         <div className="inline-flex mb-10 animate-fade-up">

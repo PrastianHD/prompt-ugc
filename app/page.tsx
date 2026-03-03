@@ -7,7 +7,7 @@ import Footer from '@/components/home/footer'
 
 export default function HomePage() {
   return (
-    <main style={{ background: 'var(--bg-base)', minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
+    <main style={{ background: 'var(--bg-base)', minHeight: '100vh' }}>
       <Header />
       <HeroSection />
       <BentoGrid />
