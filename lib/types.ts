@@ -1,7 +1,8 @@
 export interface WebhookConfig {
   step1: string
-  step2: string
-  step3: string
+  // Step 2 & 3 are cron-based, tidak bisa di-trigger manual
+  // Tapi kita simpan status polling URL kalau ada
+  statusCheck?: string
 }
 
 export interface AIConfig {
@@ -9,29 +10,55 @@ export interface AIConfig {
   apiKey: string
 }
 
-export type TaskStatus = 'ready' | 'edited' | 'finished' | 'error'
+// Status sesuai Google Sheets workflow
+export type TaskStatus = 'Ready' | 'Edited' | 'Finished' | 'error'
 
 export interface TaskInput {
   productName?: string
-  productImage?: string
+  productPhoto?: string    // was: productImage → sesuai workflow field "Product Photo"
   productLink?: string
   targetMarket: string
-  needsCharacter: boolean
-  characterImage?: string
+  needCharacter: boolean   // was: needsCharacter → sesuai workflow field "needCharacter"
+  character?: string       // was: characterImage → sesuai workflow field "character" (URL)
   characterDescription?: string
-  backgroundColor?: string
-  videoReference?: string
+  background?: string      // was: backgroundColor → sesuai workflow field "background"
+  videoReferenceLink?: string // was: videoReference → sesuai workflow field "videoReferenceLink"
+}
+
+// Response dari Step 1 webhook
+export interface ProductAnalysis {
+  category: string
+  keySellingPoints: string[]
+  recommendedTone: string
+}
+
+export interface VideoScene {
+  sceneNumber: number
+  title: string
+  setting: string
+  action: string
+  hook: string
+  duration: string
 }
 
 export interface TaskOutput {
-  sceneIdeas?: string
+  // Step 1 response fields
+  productAnalysis?: ProductAnalysis
+  videoScenes?: VideoScene[]
+  needCharacter?: boolean
+  scrapedData?: Record<string, unknown>
+
+  // Step 2 output (frame generation dari Leonardo AI)
   frameImage?: string
-  imageAnalysis?: string
+
+  // Step 3 output (video prompt generation)
   videoPrompt?: string
+  imageAnalysis?: string
 }
 
 export interface Task {
-  id: string
+  id: string           // taskId dari workflow (format: TASK-...)
+  productId?: string   // productId dari workflow (format: PROD-...)
   input: TaskInput
   output: TaskOutput
   status: TaskStatus

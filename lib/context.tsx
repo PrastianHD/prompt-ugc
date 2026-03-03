@@ -37,10 +37,11 @@ function reducer(state: State, action: Action): State {
       return { ...state, aiConfig: action.payload }
     case 'SET_TASKS':
       return { ...state, tasks: action.payload }
-    case 'ADD_TASK':
+    case 'ADD_TASK': {
       const newTasks = [...state.tasks, action.payload]
       storage.saveTasks(newTasks)
       return { ...state, tasks: newTasks }
+    }
     case 'UPDATE_TASK': {
       const updated = state.tasks.map(t =>
         t.id === action.payload.id ? { ...t, ...action.payload.updates } : t
@@ -48,10 +49,11 @@ function reducer(state: State, action: Action): State {
       storage.saveTasks(updated)
       return { ...state, tasks: updated }
     }
-    case 'DELETE_TASK':
+    case 'DELETE_TASK': {
       const filtered = state.tasks.filter(t => t.id !== action.payload)
       storage.saveTasks(filtered)
       return { ...state, tasks: filtered }
+    }
     case 'SET_CURRENT_TASK':
       return { ...state, currentTask: action.payload }
     default:
@@ -64,7 +66,6 @@ export const AppContext = createContext<AppContextType | undefined>(undefined)
 export function AppProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(reducer, initialState)
 
-  // Load from localStorage on mount
   useEffect(() => {
     const webhooks = storage.getWebhooks()
     const aiConfig = storage.getAIConfig()

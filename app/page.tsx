@@ -5,23 +5,15 @@ import HowItWorks from '@/components/home/how-it-works'
 import PricingSection from '@/components/home/pricing-section'
 import Footer from '@/components/home/footer'
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="min-h-screen bg-background">
+    <main style={{ background: 'var(--bg-base)', minHeight: '100vh', width: '100%', overflowX: 'hidden' }}>
       <Header />
-      <div className="pt-16">
-        <HeroSection />
-        <div id="features">
-          <BentoGrid />
-        </div>
-        <div id="how-it-works">
-          <HowItWorks />
-        </div>
-        <div id="pricing">
-          <PricingSection />
-        </div>
-        <Footer />
-      </div>
+      <HeroSection />
+      <BentoGrid />
+      <HowItWorks />
+      <PricingSection />
+      <Footer />
     </main>
   )
 }

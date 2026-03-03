@@ -1,39 +1,34 @@
 import type { Metadata } from 'next'
-import { Analytics } from '@vercel/analytics/next'
-import { ThemeProvider } from '@/components/theme-provider'
+import { DM_Sans, Instrument_Serif } from 'next/font/google'
 import './globals.css'
+import { ThemeProvider } from '@/components/theme-provider'
+
+// Setup Font Utama (DM Sans)
+const dmSans = DM_Sans({
+  variable: '--font-dm-sans',
+  subsets: ['latin'],
+})
+
+// Setup Font Display (Instrument Serif)
+const instrumentSerif = Instrument_Serif({
+  variable: '--font-instrument-serif',
+  weight: ['400'], 
+  style: ['normal', 'italic'],
+  subsets: ['latin'],
+})
 
 export const metadata: Metadata = {
-  title: 'PromptCraft UGC - Buat Video UGC dengan AI',
-  description: 'Platform otomatis untuk membuat script video UGC berkualitas tinggi menggunakan AI. Integrasikan dengan n8n untuk pipeline produksi yang sempurna.',
-  generator: 'v0.app',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 1,
-    userScalable: false,
-  },
-  icons: {
-    icon: [
-      {
-        url: '/icon.svg',
-        type: 'image/svg+xml',
-      },
-    ],
-  },
+  title: 'PromptCraft — UGC AI untuk Brand Indonesia',
+  description: 'Buat konten UGC profesional otomatis dengan AI. Dari foto produk hingga script, frame visual, dan prompt video — semua berjalan otomatis.',
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode
-}>) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="id" suppressHydrationWarning>
-      <body className="font-sans antialiased bg-background text-foreground">
+      {/* Inject variabel font ke dalam body */}
+      <body className={`${dmSans.variable} ${instrumentSerif.variable} antialiased`} suppressHydrationWarning>
         <ThemeProvider>
           {children}
-          <Analytics />
         </ThemeProvider>
       </body>
     </html>
