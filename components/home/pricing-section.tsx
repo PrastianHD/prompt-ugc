@@ -51,7 +51,7 @@ export default function PricingSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-stretch">
         {plans.map((plan) => (
           <div
             key={plan.name}
@@ -68,7 +68,7 @@ export default function PricingSection() {
             )}
 
             {plan.popular && (
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2">
+              <div className="absolute top-5 left-1/2 -translate-x-1/2">
                 <span className="badge badge-violet">
                   <Zap className="w-2.5 h-2.5" /> Paling Populer
                 </span>
