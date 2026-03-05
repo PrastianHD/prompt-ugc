@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
+import { Toaster } from '@/components/ui/sonner' 
+import { AppProvider } from '@/lib/context' // 👈 1. Tambahkan import ini
 
 export const metadata: Metadata = {
   title: 'PromptCraft — UGC AI untuk Brand Indonesia',
@@ -12,7 +14,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id" suppressHydrationWarning>
       <body suppressHydrationWarning>
         <ThemeProvider>
-          {children}
+          {/* 👈 2. Bungkus seluruh aplikasi dengan AppProvider */}
+          <AppProvider>
+            {children}
+            <Toaster position="top-center" richColors />
+          </AppProvider>
         </ThemeProvider>
       </body>
     </html>

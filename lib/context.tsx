@@ -1,105 +1,84 @@
 'use client'
 
-import React, { createContext, useContext, useReducer, useEffect, ReactNode } from 'react'
-import { AppContextType, WebhookConfig, AIConfig, Task } from './types'
-import { storage } from './storage'
+import { createContext, useContext, useEffect, useState, useCallback } from 'react'
+import type { Task, TaskStatus } from '@/types'
 
-type Action =
-  | { type: 'SET_WEBHOOKS'; payload: WebhookConfig }
-  | { type: 'SET_AI_CONFIG'; payload: AIConfig }
-  | { type: 'SET_TASKS'; payload: Task[] }
-  | { type: 'ADD_TASK'; payload: Task }
-  | { type: 'UPDATE_TASK'; payload: { id: string; updates: Partial<Task> } }
-  | { type: 'DELETE_TASK'; payload: string }
-  | { type: 'SET_CURRENT_TASK'; payload: Task | null }
+interface AppSettings {
+  openaiApiKey: string
+  leonardoApiKey: string
+}
 
-interface State {
-  webhooks: WebhookConfig | null
-  aiConfig: AIConfig | null
+interface AppContextValue {
   tasks: Task[]
-  currentTask: Task | null
+  settings: AppSettings
+  addTask: (task: Task) => void
+  updateTask: (id: string, updates: Partial<Task>) => void
+  removeTask: (id: string) => void
+  setSettings: (s: AppSettings) => void
 }
 
-const initialState: State = {
-  webhooks: null,
-  aiConfig: null,
-  tasks: [],
-  currentTask: null,
-}
+const AppContext = createContext<AppContextValue | null>(null)
 
-function reducer(state: State, action: Action): State {
-  switch (action.type) {
-    case 'SET_WEBHOOKS':
-      storage.saveWebhooks(action.payload)
-      return { ...state, webhooks: action.payload }
-    case 'SET_AI_CONFIG':
-      storage.saveAIConfig(action.payload)
-      return { ...state, aiConfig: action.payload }
-    case 'SET_TASKS':
-      return { ...state, tasks: action.payload }
-    case 'ADD_TASK': {
-      const newTasks = [...state.tasks, action.payload]
-      storage.saveTasks(newTasks)
-      return { ...state, tasks: newTasks }
-    }
-    case 'UPDATE_TASK': {
-      const updated = state.tasks.map(t =>
-        t.id === action.payload.id ? { ...t, ...action.payload.updates } : t
-      )
-      storage.saveTasks(updated)
-      return { ...state, tasks: updated }
-    }
-    case 'DELETE_TASK': {
-      const filtered = state.tasks.filter(t => t.id !== action.payload)
-      storage.saveTasks(filtered)
-      return { ...state, tasks: filtered }
-    }
-    case 'SET_CURRENT_TASK':
-      return { ...state, currentTask: action.payload }
-    default:
-      return state
-  }
-}
+const TASKS_KEY = 'ugc_tasks_v2'
+const SETTINGS_KEY = 'ugc_settings_v2'
 
-export const AppContext = createContext<AppContextType | undefined>(undefined)
+export function AppProvider({ children }: { children: React.ReactNode }) {
+  const [tasks, setTasks] = useState<Task[]>([])
+  const [settings, setSettingsState] = useState<AppSettings>({
+    openaiApiKey: '',
+    leonardoApiKey: '',
+  })
+  const [hydrated, setHydrated] = useState(false)
 
-export function AppProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, initialState)
-
+  // Load from localStorage
   useEffect(() => {
-    const webhooks = storage.getWebhooks()
-    const aiConfig = storage.getAIConfig()
-    const tasks = storage.getTasks()
-
-    if (webhooks) dispatch({ type: 'SET_WEBHOOKS', payload: webhooks })
-    if (aiConfig) dispatch({ type: 'SET_AI_CONFIG', payload: aiConfig })
-    if (tasks.length > 0) dispatch({ type: 'SET_TASKS', payload: tasks })
+    try {
+      const raw = localStorage.getItem(TASKS_KEY)
+      if (raw) setTasks(JSON.parse(raw))
+    } catch {}
+    try {
+      const raw = localStorage.getItem(SETTINGS_KEY)
+      if (raw) setSettingsState(JSON.parse(raw))
+    } catch {}
+    setHydrated(true)
   }, [])
 
-  const value: AppContextType = {
-    webhooks: state.webhooks,
-    aiConfig: state.aiConfig,
-    tasks: state.tasks,
-    currentTask: state.currentTask,
-    setWebhooks: (webhooks: WebhookConfig) =>
-      dispatch({ type: 'SET_WEBHOOKS', payload: webhooks }),
-    setAIConfig: (config: AIConfig) =>
-      dispatch({ type: 'SET_AI_CONFIG', payload: config }),
-    addTask: (task: Task) => dispatch({ type: 'ADD_TASK', payload: task }),
-    updateTask: (id: string, updates: Partial<Task>) =>
-      dispatch({ type: 'UPDATE_TASK', payload: { id, updates } }),
-    deleteTask: (id: string) => dispatch({ type: 'DELETE_TASK', payload: id }),
-    setCurrentTask: (task: Task | null) =>
-      dispatch({ type: 'SET_CURRENT_TASK', payload: task }),
-  }
+  // Persist tasks
+  useEffect(() => {
+    if (!hydrated) return
+    localStorage.setItem(TASKS_KEY, JSON.stringify(tasks))
+  }, [tasks, hydrated])
 
-  return <AppContext.Provider value={value}>{children}</AppContext.Provider>
+  const addTask = useCallback((task: Task) => {
+    setTasks((prev) => [task, ...prev])
+  }, [])
+
+  const updateTask = useCallback((id: string, updates: Partial<Task>) => {
+    setTasks((prev) =>
+      prev.map((t) => (t.id === id ? { ...t, ...updates, updatedAt: Date.now() } : t))
+    )
+  }, [])
+
+  const removeTask = useCallback((id: string) => {
+    setTasks((prev) => prev.filter((t) => t.id !== id))
+  }, [])
+
+  const setSettings = useCallback((s: AppSettings) => {
+    setSettingsState(s)
+    localStorage.setItem(SETTINGS_KEY, JSON.stringify(s))
+  }, [])
+
+  if (!hydrated) return null
+
+  return (
+    <AppContext.Provider value={{ tasks, settings, addTask, updateTask, removeTask, setSettings }}>
+      {children}
+    </AppContext.Provider>
+  )
 }
 
 export function useAppContext() {
-  const context = useContext(AppContext)
-  if (!context) {
-    throw new Error('useAppContext must be used within AppProvider')
-  }
-  return context
+  const ctx = useContext(AppContext)
+  if (!ctx) throw new Error('useAppContext must be used within AppProvider')
+  return ctx
 }

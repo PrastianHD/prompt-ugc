@@ -1,39 +1,19 @@
-export interface WebhookConfig {
-  step1: string
-  // Step 2 & 3 are cron-based, tidak bisa di-trigger manual
-  // Tapi kita simpan status polling URL kalau ada
-  statusCheck?: string
-}
+// lib/types.ts
 
-export interface AIConfig {
-  provider: 'openai' | 'gemini'
-  apiKey: string
-}
+export type TaskStatus = 'pending' | 'analyzing' | 'ready' | 'generating' | 'edited' | 'finished' | 'error'
 
-// Status sesuai Google Sheets workflow
-export type TaskStatus = 'Ready' | 'Edited' | 'Finished' | 'error'
-
-export interface TaskInput {
-  productName?: string
-  productPhoto?: string    // was: productImage → sesuai workflow field "Product Photo"
-  productLink?: string
-  targetMarket: string
-  needCharacter: boolean   // was: needsCharacter → sesuai workflow field "needCharacter"
-  character?: string       // was: characterImage → sesuai workflow field "character" (URL)
-  characterDescription?: string
-  background?: string      // was: backgroundColor → sesuai workflow field "background"
-  videoReferenceLink?: string // was: videoReference → sesuai workflow field "videoReferenceLink"
-}
-
-// Response dari Step 1 webhook
-export interface ProductAnalysis {
+export interface ScrapedProduct {
+  name: string
+  description: string
   category: string
-  keySellingPoints: string[]
-  recommendedTone: string
+  imageUrls: string[]
+  price?: string
+  rating?: string
+  shopName?: string
+  productLink: string
 }
 
 export interface VideoScene {
-  sceneNumber: number
   title: string
   setting: string
   action: string
@@ -41,40 +21,52 @@ export interface VideoScene {
   duration: string
 }
 
-export interface TaskOutput {
-  // Step 1 response fields
-  productAnalysis?: ProductAnalysis
-  videoScenes?: VideoScene[]
-  needCharacter?: boolean
-  scrapedData?: Record<string, unknown>
+export interface ProductAnalysis {
+  category: string
+  keySellingPoints: string[]
+  targetMarket: string
+  recommendedTone: string
+  needCharacter: boolean
+  videoScene: VideoScene
+}
 
-  // Step 2 output (frame generation dari Leonardo AI)
-  frameImage?: string
+// 🔴 KEMBALIKAN FORMAT VIDEOCLIP
+export interface VideoClip {
+  prompt: string
+  endFrame?: string
+  notes?: string
+}
 
-  // Step 3 output (video prompt generation)
-  videoPrompt?: string
-  imageAnalysis?: string
+export interface GeneratedImage {
+  id: string
+  url: string
+  prompt: string
+  clip1?: VideoClip
+  clip2?: VideoClip
+  fullScene?: string
+  createdAt: number
 }
 
 export interface Task {
-  id: string           // taskId dari workflow (format: TASK-...)
-  productId?: string   // productId dari workflow (format: PROD-...)
-  input: TaskInput
-  output: TaskOutput
+  id: string
   status: TaskStatus
   createdAt: number
   updatedAt: number
+  input: {
+    productLink?: string
+    productPhoto?: string
+    productName?: string
+    targetMarket?: string
+    needCharacter?: boolean | null
+    character?: string
+    background?: string
+  }
+  scraped?: ScrapedProduct
+  analysis?: ProductAnalysis
+  generatedImages?: GeneratedImage[]
+  error?: string
 }
 
-export interface AppContextType {
-  webhooks: WebhookConfig | null
-  aiConfig: AIConfig | null
-  tasks: Task[]
-  currentTask: Task | null
-  setWebhooks: (webhooks: WebhookConfig) => void
-  setAIConfig: (config: AIConfig) => void
-  addTask: (task: Task) => void
-  updateTask: (id: string, updates: Partial<Task>) => void
-  deleteTask: (id: string) => void
-  setCurrentTask: (task: Task | null) => void
-}
+export interface ScrapeResponse { success: boolean; data?: ScrapedProduct; error?: string }
+export interface AnalyzeResponse { success: boolean; data?: ProductAnalysis; error?: string }
+export interface GenerateImageResponse { success: boolean; data?: GeneratedImage; error?: string }

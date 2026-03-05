@@ -220,3 +220,14 @@
 .delay-200 { animation-delay: 0.2s; }
 .delay-300 { animation-delay: 0.3s; }
 .delay-400 { animation-delay: 0.4s; }
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/70 dark:bg-black/40 backdrop-blur-xl border border-slate-200 dark:border-white/10 shadow-sm transition-colors duration-300;
+  }
+}
+
+/* Pastikan warna teks default merespon mode */
+body {
+  @apply bg-slate-50 dark:bg-background text-slate-900 dark:text-foreground;
+}

@@ -10,8 +10,9 @@ export function ThemeToggle() {
 
   useEffect(() => { setMounted(true) }, [])
 
+  // Saat belum mount (mencegah kedip / hydration mismatch)
   if (!mounted) return (
-    <div className="w-9 h-9 rounded-xl" style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }} />
+    <div className="w-9 h-9 rounded-xl bg-card border border-border" />
   )
 
   const isDark = resolvedTheme === 'dark'
@@ -20,20 +21,8 @@ export function ThemeToggle() {
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       aria-label={isDark ? 'Mode terang' : 'Mode gelap'}
-      className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200"
-      style={{
-        background: 'var(--bg-card)',
-        border: '1px solid var(--border)',
-        color: 'var(--text-muted)',
-      }}
-      onMouseEnter={e => {
-        e.currentTarget.style.borderColor = 'var(--border-glow)'
-        e.currentTarget.style.color = 'var(--accent-bright)'
-      }}
-      onMouseLeave={e => {
-        e.currentTarget.style.borderColor = 'var(--border)'
-        e.currentTarget.style.color = 'var(--text-muted)'
-      }}
+      // Memanfaatkan class bawaan Tailwind untuk hover agar lebih ringan & smooth
+      className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 bg-card border border-border text-muted-foreground hover:border-[var(--border-glow)] hover:text-[var(--accent-bright)]"
     >
       {isDark ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
     </button>
